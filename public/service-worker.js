@@ -8,6 +8,7 @@ const FILES_TO_CACHE = [
 
 const PRECACHE = "precache-v1";
 const RUNTIME = "runtime";
+const DATACACHE = "data-cache-v1";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -21,7 +22,9 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
   const currentCaches = [PRECACHE, RUNTIME];
   event.waitUntil(
-    caches.keys().then((cachesToDelete) => {
+    caches
+      .keys()
+      .then((cachesToDelete) => {
         Promise.all(
           cachesToDelete.map((cacheToDelete) => {
             if (!currentCaches) {
@@ -29,25 +32,34 @@ self.addEventListener("activate", (event) => {
             }
           })
         );
-      }).then(() => self.clients.claim())
+      })
+      .then(() => self.clients.claim())
   );
 });
 
 self.addEventListener("fetch", (event) => {
   if (event.request.url.startsWith(self.location.origin)) {
     event.respondWith(
-      caches.open(e).then((response) => {
-        if (response) {
-          return response;
-        }
+      caches.open(DATACACHE).then((cache) => {
+        return fetch(event.request).then((response) => {
+          return cache.put(event.request.url, response.clone()).then(() => {
+            return response;
+          });
+        });
       })
     );
+    return;
   }
-  return caches.match(event.request).thenn((response) => {
-    if (response) {
-      return response;
-    } else if (event.request.headers("accept").includes("text/html")) {
-      return caches.match("/");
-    }
-  });
+
+  event.respondWith(
+    fetch(event.request).catch(() => {
+      return caches.match(event.request).then((response) => {
+        if (response) {
+          return response;
+        } else if (event.request.headers("accept").includes("text/html")) {
+          return caches.match("/");
+        }
+      });
+    })
+  );
 });
