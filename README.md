@@ -1,70 +1,55 @@
-# Unit 18 PWA Homework: Online/Offline Budget Trackers
+# Online/Offline Budget Tracker
 
-Add functionality to our existing Budget Tracker application to allow for offline access and functionality.
+![badge](https://img.shields.io/static/v1?label=License&message=MIT%20License&color=blue)
+  
+## Description
 
-The user will be able to add expenses and deposits to their budget with or without a connection. When entering transactions offline, they should populate the total when brought back online.
+This Budget Tracker application allows for both online and offline access and functionality for users.
 
-Offline Functionality:
+Users are able to add expenses and deposits to their budget with or without a connection. When entering transactions offline, the information is saved and then is populated when brought back online.
 
-  * Enter deposits offline
+## Tableof Contents
 
-  * Enter expenses offline
+* [Deployed_Application](#Deployed_Application)
+* [Usage](#Usage)
+* [Mockup](#Mock-Up)
+* [Schema](#Schema)
+* [License](#License)
+* [Questions](#Questions)
+  
+## Deployed_Application
 
-When brought back online:
+To access this deployed application, visit the following link: [Budget Tracker Application](https://budgettrackerjr.herokuapp.com/)
 
-  * Offline entries should be added to tracker.
+## Usage
 
-## User Story
-AS AN avid traveller
-I WANT to be able to track my withdrawals and deposits with or without a data/internet connection
-SO THAT my account balance is accurate when I am traveling
+Budget Tracker is an interactive workout application that utilzes MongoDB, Node, Express, HTML, JavaScript, API Routes, Service Workers, Cached information, and an indexed db.
 
-## Business Context
+Budget Tracker uses Node and Mongo to query and route data to the application, and generate the HTML. While utilizing this application the user is able to: track transactions, either adding or subtracting funds.
 
-Giving users a fast and easy way to track their money is important, but allowing them to access that information anytime is even more important. Having offline functionality is paramount to our applications success.
+This application will work both online and offline by means of service workers, cached data, and indexed db.
 
+## Mock-Up
 
-## Acceptance Criteria
-GIVEN a user is on Budget App without an internet connection
-WHEN the user inputs a withdrawal or deposit
-THEN that will be shown on the page, and added to their transaction history when their connection is back online.
+![MockUp](public/images/mockup.png)
 
-- - -
+## Schema
 
-## Commit Early and Often
+### Database
 
-* One of the most important skills to master as a web developer is version control. Building the habit of committing via Git is important for two reasons:
+The database that is being utilized is "budget", this is hosted on mongodb locally and Mongo Atlas on Heroku
 
-1. Your commit history is a signal to employers that you are actively working on projects and learning new skills
+### Models
 
-2. Your commit history allows you to revert your code base in the event that you need to return to a previous state
+Inside the database there is a document created titled transactionSchema. This Schema is comprised of the name of the transaction, the value of the transaction, and current date.
 
-* Follow these guidelines for committing:
+## License
 
-  * Make single purpose commits for related changes to ensure a clean, manageable history. If you are fixing two issues, make two commits
+Thisapplication has a MIT License type. Please read more about permissions at [Choose A License](https://choosealicense.com/licenses/)
 
-  * Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history
+## Questions
 
-  * Don't commit half done work, for the sake of your collaborators (and your future self!)
+Please reach out to me with any additional questions by contacting me.
 
-  * Test your application before you commit to ensure functionality at every step in the development process
-
-* We would like you to have well over 200 commits by graduation, so commit early and often!
-
-* Deploy your application with [Heroku and MongoDB Atlas.](../04-Important/MongoAtlas-Deploy.md)
-
-## Submission on BCS
-
-* You are required to submit the following:
-
-  * the URL to the deployed application
-
-  * the URL to the Github repository
-
-- - -
-
-## Hint
-
-* In order to cache dynamic content, i.e. users' inputs for withdrawals or deposits, incorporate `indexedDB` from the previous module.
-
-* Use [Google](https://www.google.com) or another search engine to research this topic.
+* GitHub Profile: [ross1jk](https://github.com/ross1jk)
+* My Email Address: [Jacqueline.ross09@gmail.com](jacqueline.ross09@gmail.com)
